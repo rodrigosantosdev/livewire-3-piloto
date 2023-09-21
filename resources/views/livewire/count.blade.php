@@ -22,7 +22,7 @@
             <span class="text-red-500">{{ $message }}</span>
         @enderror
 
-        <button class="bg-red-500 px-3 py-1 text-white">Create</button>
+        <button class="px-3 py-1 text-white bg-red-500">Create</button>
 
     </form>
 
@@ -39,5 +39,16 @@
                 </article>
             @endforeach
         </div>
+
+        {{-- 
+            paginação, customizada, instalando o comandos abaixo:
+            1- php artisan livewire:publish --config
+            2- php artisan livewire:publish --pagination
+            informações na doc do livewire.    
+
+            para personalizar vai na pasta resources/views/vendor/livewire
+            e copie o arquivo do tailwind.blade.php mude o nome e personalize o seu style.
+        --}}
+        {{ $users->links('vendor.livewire.customPaginator') }}
     </div>
 </div>

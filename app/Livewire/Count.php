@@ -6,9 +6,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Count extends Component
 {
+    // use WithPagination;
+    use WithPagination;
 
     // validação de dados, do livewire
     #[Rule('required|min:2|max:100')]
@@ -26,7 +29,6 @@ class Count extends Component
     public function createNewUser()
     {
 
-
         $validated = $this->validate();
 
         // cria um novo usuario
@@ -42,8 +44,9 @@ class Count extends Component
 
     public function render()
     {
-        // busca todos os usuarios
-        $users = User::all();
+        // User::paginate() retorna uma todos os dados da tabela user, paginado, passe a quantidade no parametro.
+        // User::all() retorna todos os dados da tabela user
+        $users = User::paginate(4);
 
         return view('livewire.count', [
             'users' => $users
